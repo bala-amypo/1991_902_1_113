@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class basics{
     @GetMapping("/home")
-    public String getter(){
+    public String name(){
         return "hello world";
     }
 }
