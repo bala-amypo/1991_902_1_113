@@ -1,5 +1,4 @@
 package com.example.demo.controller;
-
 import com.example.demo.entity.RepeatOffenderRecord;
 import com.example.demo.service.RepeatOffenderRecordService;
 import org.springframework.web.bind.annotation.*;
