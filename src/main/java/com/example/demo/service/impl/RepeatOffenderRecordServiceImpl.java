@@ -11,7 +11,7 @@ public class RepeatOffenderRecordServiceImpl implements RepeatOffenderRecordServ
 
     @Override
     public void refreshRepeatOffenderData(Long studentId) {
-        // temporary implementation
+        
     }
 
     @Override

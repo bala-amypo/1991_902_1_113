@@ -1,44 +1,26 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.entity.IntegrityCase;
-import com.example.demo.entity.StudentProfile;
-import com.example.demo.repository.IntegrityCaseRepository;
-import com.example.demo.repository.StudentProfileRepository;
 import com.example.demo.service.IntegrityCaseService;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public class IntegrityCaseServiceImpl implements IntegrityCaseService {
 
-    private final IntegrityCaseRepository caseRepo;
-    private final StudentProfileRepository studentRepo;
-
-    public IntegrityCaseServiceImpl(
-            IntegrityCaseRepository caseRepo,
-            StudentProfileRepository studentRepo) {
-        this.caseRepo = caseRepo;
-        this.studentRepo = studentRepo;
+    @Override
+    public IntegrityCase createCase(IntegrityCase integrityCase) {
+        return integrityCase;
     }
 
-    public IntegrityCase createCase(IntegrityCase c) {
-        return caseRepo.save(c);
-    }
-
-    public IntegrityCase updateCaseStatus(Long id, String status) {
-        IntegrityCase c = caseRepo.findById(id).orElseThrow();
-        c.setStatus(status);
-        return caseRepo.save(c);
-    }
-
-    public List<IntegrityCase> getCasesByStudent(Long studentId) {
-        StudentProfile s = studentRepo.findById(studentId).orElseThrow();
-        return caseRepo.findByStudentProfile(s);
-    }
-
+    @Override
     public IntegrityCase getCaseById(Long id) {
-        return caseRepo.findById(id).orElseThrow();
+        return null;
     }
 
+    @Override
     public List<IntegrityCase> getAllCases() {
-        return caseRepo.findAll();
+        return List.of();
     }
 }
