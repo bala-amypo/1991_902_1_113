@@ -4,24 +4,31 @@ import com.example.demo.entity.StudentProfile;
 import com.example.demo.service.StudentProfileService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class StudentProfileServiceImpl implements StudentProfileService {
 
+    private final List<StudentProfile> students = new ArrayList<>();
+
     @Override
     public StudentProfile createStudent(StudentProfile profile) {
+        students.add(profile);   // ✅ store in memory
         return profile;
     }
 
     @Override
     public StudentProfile getStudentById(Long id) {
-        return null;
+        return students.stream()
+                .filter(s -> s.getId().equals(id))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
     public List<StudentProfile> getAllStudents() {
-        return List.of();
+        return students;       
     }
 
     @Override
