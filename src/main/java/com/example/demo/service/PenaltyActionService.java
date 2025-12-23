@@ -1,22 +1,13 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.PenaltyAction;
-import org.springframework.stereotype.Service;   
-
 import java.util.List;
 
-@Service
-public class PenaltyActionService {
+public interface PenaltyActionService {
 
-    public PenaltyAction addPenalty(PenaltyAction p) {
-        return p;
-    }
+    PenaltyAction addPenalty(PenaltyAction p);
 
-    public PenaltyAction getPenaltyById(Long id) {
-        return null;
-    }
+    PenaltyAction getPenaltyById(Long id);
 
-    public List<PenaltyAction> getAllPenalties() {
-        return List.of();
-    }
+    List<PenaltyAction> getAllPenalties();
 }
