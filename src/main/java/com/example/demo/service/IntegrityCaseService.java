@@ -5,7 +5,11 @@ import java.util.List;
 
 public interface IntegrityCaseService {
 
-    IntegrityCase createCase(IntegrityCase integrityCase);
+    IntegrityCase createCase(IntegrityCase c);
+
+    IntegrityCase updateCaseStatus(Long id, String status);
+
+    List<IntegrityCase> getCasesByStudent(Long studentId);
 
     IntegrityCase getCaseById(Long id);
 
