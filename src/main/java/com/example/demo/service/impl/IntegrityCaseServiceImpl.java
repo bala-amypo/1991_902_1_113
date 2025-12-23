@@ -3,7 +3,6 @@ package com.example.demo.service.impl;
 import com.example.demo.entity.IntegrityCase;
 import com.example.demo.service.IntegrityCaseService;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

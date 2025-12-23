@@ -3,7 +3,6 @@ package com.example.demo.service.impl;
 import com.example.demo.entity.RepeatOffenderRecord;
 import com.example.demo.service.RepeatOffenderRecordService;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -11,7 +10,6 @@ public class RepeatOffenderRecordServiceImpl implements RepeatOffenderRecordServ
 
     @Override
     public void refreshRepeatOffenderData(Long studentId) {
-        
     }
 
     @Override
