@@ -5,9 +5,9 @@ import java.util.List;
 
 public interface RepeatOffenderRecordService {
 
-    RepeatOffenderRecord addRecord(RepeatOffenderRecord record);
+    void refreshRepeatOffenderData(Long studentId);
 
-    RepeatOffenderRecord getRecordById(Long id);
+    RepeatOffenderRecord getRecordByStudent(Long studentId);
 
-    List<RepeatOffenderRecord> getAllRecords();
+    List<RepeatOffenderRecord> getAllRepeatOffenders();
 }

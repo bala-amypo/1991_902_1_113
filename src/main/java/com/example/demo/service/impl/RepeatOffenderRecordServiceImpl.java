@@ -10,17 +10,17 @@ import java.util.List;
 public class RepeatOffenderRecordServiceImpl implements RepeatOffenderRecordService {
 
     @Override
-    public RepeatOffenderRecord addRecord(RepeatOffenderRecord record) {
-        return record;
+    public void refreshRepeatOffenderData(Long studentId) {
+        // temporary implementation
     }
 
     @Override
-    public RepeatOffenderRecord getRecordById(Long id) {
+    public RepeatOffenderRecord getRecordByStudent(Long studentId) {
         return null;
     }
 
     @Override
-    public List<RepeatOffenderRecord> getAllRecords() {
+    public List<RepeatOffenderRecord> getAllRepeatOffenders() {
         return List.of();
     }
 }
