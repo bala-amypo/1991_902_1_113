@@ -6,11 +6,13 @@ import java.util.List;
 
 public interface IntegrityCaseService {
 
-    IntegrityCase saveCase(IntegrityCase integrityCase);
+    IntegrityCase createCase(IntegrityCase integrityCase);
+
+    IntegrityCase updateCaseStatus(Long caseId, String status);
+
+    IntegrityCase getCaseById(Long id);
 
     List<IntegrityCase> getCasesByStudent(Long studentProfileId);
 
     List<IntegrityCase> getAllCases();
-
-    IntegrityCase getCaseById(Long id);
 }

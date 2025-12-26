@@ -15,8 +15,23 @@ public class IntegrityCaseServiceImpl implements IntegrityCaseService {
     private final IntegrityCaseRepository repository;
 
     @Override
-    public IntegrityCase saveCase(IntegrityCase integrityCase) {
+    public IntegrityCase createCase(IntegrityCase integrityCase) {
         return repository.save(integrityCase);
+    }
+
+    @Override
+    public IntegrityCase updateCaseStatus(Long caseId, String status) {
+        IntegrityCase c = repository.findById(caseId).orElse(null);
+        if (c == null) {
+            return null;
+        }
+        c.setStatus(status);
+        return repository.save(c);
+    }
+
+    @Override
+    public IntegrityCase getCaseById(Long id) {
+        return repository.findById(id).orElse(null);
     }
 
     @Override
@@ -27,10 +42,5 @@ public class IntegrityCaseServiceImpl implements IntegrityCaseService {
     @Override
     public List<IntegrityCase> getAllCases() {
         return repository.findAll();
-    }
-
-    @Override
-    public IntegrityCase getCaseById(Long id) {
-        return repository.findById(id).orElse(null);
     }
 }
