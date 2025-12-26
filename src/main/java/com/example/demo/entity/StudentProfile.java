@@ -2,7 +2,6 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 public class StudentProfile {
@@ -19,34 +18,39 @@ public class StudentProfile {
     private boolean repeatOffender;
     private LocalDateTime createdAt;
 
-    @OneToMany(mappedBy = "studentProfile")
-    private List<IntegrityCase> integrityCases;
+    public String getStudentId() {
+        return studentId;
+    }
 
-    public StudentProfile() {}
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public String getStudentId() { return studentId; }
-    public void setStudentId(String studentId) { this.studentId = studentId; }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public void setProgram(String program) {
+        this.program = program;
+    }
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    public void setYearLevel(int yearLevel) {
+        this.yearLevel = yearLevel;
+    }
 
-    public String getProgram() { return program; }
-    public void setProgram(String program) { this.program = program; }
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
 
-    public int getYearLevel() { return yearLevel; }
-    public void setYearLevel(int yearLevel) { this.yearLevel = yearLevel; }
+    public boolean getRepeatOffender() {
+        return repeatOffender;
+    }
 
-    public boolean getRepeatOffender() { return repeatOffender; }
-    public void setRepeatOffender(boolean repeatOffender) { this.repeatOffender = repeatOffender; }
-
-    public LocalDateTime getCreatedAt() { return createdAt; }
-    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
-
-    public List<IntegrityCase> getIntegrityCases() { return integrityCases; }
+    public void setRepeatOffender(boolean repeatOffender) {
+        this.repeatOffender = repeatOffender;
+    }
 }
