@@ -2,13 +2,15 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.PenaltyAction;
 import com.example.demo.service.PenaltyActionService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/penalties")
+@Tag(name = "Penalty Actions")
 public class PenaltyActionController {
-
     private final PenaltyActionService service;
 
     public PenaltyActionController(PenaltyActionService service) {
@@ -16,17 +18,8 @@ public class PenaltyActionController {
     }
 
     @PostMapping
-    public PenaltyAction add(@RequestBody PenaltyAction p) {
-        return service.addPenalty(p);
-    }
-
-    @GetMapping("/{id}")
-    public PenaltyAction byId(@PathVariable Long id) {
-        return service.getPenaltyById(id);
-    }
-
-    @GetMapping
-    public List<PenaltyAction> all() {
-        return service.getAllPenalties();
+    @Operation(summary = "Add penalty")
+    public ResponseEntity<PenaltyAction> addPenalty(@RequestBody PenaltyAction p) {
+        return ResponseEntity.ok(service.addPenalty(p));
     }
 }

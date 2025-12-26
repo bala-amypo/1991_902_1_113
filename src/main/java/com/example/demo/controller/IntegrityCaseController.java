@@ -2,13 +2,16 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.IntegrityCase;
 import com.example.demo.service.IntegrityCaseService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/cases")
+@Tag(name = "Integrity Cases")
 public class IntegrityCaseController {
-
     private final IntegrityCaseService service;
 
     public IntegrityCaseController(IntegrityCaseService service) {
@@ -16,27 +19,28 @@ public class IntegrityCaseController {
     }
 
     @PostMapping
-    public IntegrityCase create(@RequestBody IntegrityCase c) {
-        return service.createCase(c);
+    @Operation(summary = "Create integrity case")
+    public ResponseEntity<IntegrityCase> createCase(@RequestBody IntegrityCase c) {
+        return ResponseEntity.ok(service.createCase(c));
     }
 
     @PutMapping("/{id}/status")
-    public IntegrityCase updateStatus(@PathVariable Long id, @RequestParam String status) {
-        return service.updateCaseStatus(id, status);
+    @Operation(summary = "Update case status")
+    public ResponseEntity<IntegrityCase> updateCaseStatus(@PathVariable Long id, @RequestParam String status) {
+        return ResponseEntity.ok(service.updateCaseStatus(id, status));
     }
 
     @GetMapping("/student/{studentId}")
-    public List<IntegrityCase> byStudent(@PathVariable Long studentId) {
-        return service.getCasesByStudent(studentId);
+    @Operation(summary = "Get cases by student")
+    public ResponseEntity<List<IntegrityCase>> getCasesByStudent(@PathVariable Long studentId) {
+        return ResponseEntity.ok(service.getCasesByStudent(studentId));
     }
 
     @GetMapping("/{id}")
-    public IntegrityCase byId(@PathVariable Long id) {
-        return service.getCaseById(id);
-    }
-
-    @GetMapping
-    public List<IntegrityCase> all() {
-        return service.getAllCases();
+    @Operation(summary = "Get case by ID")
+    public ResponseEntity<IntegrityCase> getCaseById(@PathVariable Long id) {
+        return service.getCaseById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }

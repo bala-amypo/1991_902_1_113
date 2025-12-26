@@ -2,13 +2,16 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.StudentProfile;
 import com.example.demo.service.StudentProfileService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/students")
+@Tag(name = "Student Profile")
 public class StudentProfileController {
-
     private final StudentProfileService service;
 
     public StudentProfileController(StudentProfileService service) {
@@ -16,22 +19,26 @@ public class StudentProfileController {
     }
 
     @PostMapping
-    public StudentProfile create(@RequestBody StudentProfile s) {
-        return service.createStudent(s);
+    @Operation(summary = "Create student")
+    public ResponseEntity<StudentProfile> createStudent(@RequestBody StudentProfile student) {
+        return ResponseEntity.ok(service.createStudent(student));
     }
 
     @GetMapping("/{id}")
-    public StudentProfile get(@PathVariable Long id) {
-        return service.getStudentById(id);
+    @Operation(summary = "Get student by ID")
+    public ResponseEntity<StudentProfile> getStudentById(@PathVariable Long id) {
+        return ResponseEntity.ok(service.getStudentById(id));
     }
 
     @GetMapping
-    public List<StudentProfile> all() {
-        return service.getAllStudents();
+    @Operation(summary = "Get all students")
+    public ResponseEntity<List<StudentProfile>> getAllStudents() {
+        return ResponseEntity.ok(service.getAllStudents());
     }
 
-    @PutMapping("/{id}/repeat-status")
-    public void update(@PathVariable Long id) {
-        service.updateRepeatOffenderStatus(id);
+    @PutMapping("/{id}/repeat-offender")
+    @Operation(summary = "Update repeat offender status")
+    public ResponseEntity<StudentProfile> updateRepeatOffenderStatus(@PathVariable Long id) {
+        return ResponseEntity.ok(service.updateRepeatOffenderStatus(id));
     }
 }
