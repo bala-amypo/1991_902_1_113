@@ -19,6 +19,10 @@ public class RepeatOffenderRecord {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Integer getTotalCases() {
         return totalCases;
     }
