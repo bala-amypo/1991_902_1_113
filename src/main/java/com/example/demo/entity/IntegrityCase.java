@@ -1,14 +1,7 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 public class IntegrityCase {
 
@@ -16,21 +9,53 @@ public class IntegrityCase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    private StudentProfile studentProfile;
-
-    private String courseCode;
-
-    private String instructorName;
+    private String caseType;
 
     private String description;
 
     private String status;
 
-    private LocalDateTime incidentDate;
+    @ManyToOne
+    @JoinColumn(name = "student_profile_id")
+    private StudentProfile studentProfile;
 
-    private LocalDateTime createdAt;
+    public Long getId() {
+        return id;
+    }
 
-    @OneToMany(mappedBy = "integrityCase", cascade = CascadeType.ALL)
-    private List<PenaltyAction> penalties;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCaseType() {
+        return caseType;
+    }
+
+    public void setCaseType(String caseType) {
+        this.caseType = caseType;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public StudentProfile getStudentProfile() {
+        return studentProfile;
+    }
+
+    public void setStudentProfile(StudentProfile studentProfile) {
+        this.studentProfile = studentProfile;
+    }
 }
