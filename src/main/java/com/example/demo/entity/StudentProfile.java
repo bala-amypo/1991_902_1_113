@@ -1,11 +1,13 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import lombok.*;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class StudentProfile {
 
     @Id
@@ -16,26 +18,5 @@ public class StudentProfile {
     private String name;
     private String email;
     private String program;
-    private Integer yearLevel;
-    private Boolean repeatOffender = false;
-    private LocalDateTime createdAt = LocalDateTime.now();
-
-    @OneToMany(mappedBy = "studentProfile")
-    private List<IntegrityCase> integrityCases = new ArrayList<>();
-
-    public Long getId() {
-        return id;
-    }
-
-    public Boolean getRepeatOffender() {
-        return repeatOffender;
-    }
-
-    public void setRepeatOffender(Boolean repeatOffender) {
-        this.repeatOffender = repeatOffender;
-    }
-
-    public List<IntegrityCase> getIntegrityCases() {
-        return integrityCases;
-    }
+    private int yearLevel;
 }
