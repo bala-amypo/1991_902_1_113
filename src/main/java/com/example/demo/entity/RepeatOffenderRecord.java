@@ -15,11 +15,19 @@ public class RepeatOffenderRecord {
     @OneToOne
     private StudentProfile studentProfile;
 
+    public Long getId() {
+        return id;
+    }
+
     public void setTotalCases(int totalCases) {
         this.totalCases = totalCases;
     }
 
     public void setFlagSeverity(String flagSeverity) {
         this.flagSeverity = flagSeverity;
+    }
+
+    public void setStudentProfile(StudentProfile studentProfile) {
+        this.studentProfile = studentProfile;
     }
 }

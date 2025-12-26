@@ -11,6 +11,7 @@ public class IntegrityCase {
     private Long id;
 
     private String courseCode;
+    private String status;
     private LocalDateTime createdAt;
 
     @ManyToOne
@@ -18,6 +19,10 @@ public class IntegrityCase {
 
     public void setCourseCode(String courseCode) {
         this.courseCode = courseCode;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void setCreatedAt(LocalDateTime createdAt) {
