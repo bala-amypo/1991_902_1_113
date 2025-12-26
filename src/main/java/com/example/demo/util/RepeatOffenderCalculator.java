@@ -11,11 +11,11 @@ public class RepeatOffenderCalculator {
     public boolean isRepeatOffender(StudentProfile profile, List<IntegrityCase> cases) {
         LocalDate now = LocalDate.now();
 
-        long recentCases = cases.stream()
+        long recentCount = cases.stream()
                 .filter(c -> c.getIncidentDate() != null)
                 .filter(c -> c.getIncidentDate().isAfter(now.minusMonths(6)))
                 .count();
 
-        return recentCases >= 2;
+        return recentCount >= 2;
     }
 }

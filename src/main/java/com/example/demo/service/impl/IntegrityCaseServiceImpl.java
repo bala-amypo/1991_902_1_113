@@ -20,4 +20,9 @@ public class IntegrityCaseServiceImpl implements IntegrityCaseService {
     public List<IntegrityCase> getAllCases() {
         return repository.findAll();
     }
+
+    @Override
+    public List<IntegrityCase> getCasesByStudent(Long studentId) {
+        return repository.findByStudentId(studentId);
+    }
 }

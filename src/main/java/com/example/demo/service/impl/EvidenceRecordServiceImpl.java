@@ -20,4 +20,9 @@ public class EvidenceRecordServiceImpl implements EvidenceRecordService {
     public List<EvidenceRecord> getAllEvidence() {
         return repository.findAll();
     }
+
+    @Override
+    public EvidenceRecord getEvidenceById(Long id) {
+        return repository.findById(id).orElse(null);
+    }
 }

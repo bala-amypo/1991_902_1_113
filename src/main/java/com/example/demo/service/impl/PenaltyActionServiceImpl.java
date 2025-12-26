@@ -20,4 +20,9 @@ public class PenaltyActionServiceImpl implements PenaltyActionService {
     public List<PenaltyAction> getAllPenalties() {
         return repository.findAll();
     }
+
+    @Override
+    public PenaltyAction getPenaltyById(Long id) {
+        return repository.findById(id).orElse(null);
+    }
 }
