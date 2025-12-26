@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class EvidenceRecord {
@@ -9,8 +10,9 @@ public class EvidenceRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String evidenceType;
-    private String submittedBy;
+    private String content;
+
+    private LocalDateTime submittedAt;
 
     @ManyToOne
     private IntegrityCase integrityCase;
@@ -19,20 +21,24 @@ public class EvidenceRecord {
         return id;
     }
 
-    public String getEvidenceType() {
-        return evidenceType;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setEvidenceType(String evidenceType) {
-        this.evidenceType = evidenceType;
+    public String getContent() {
+        return content;
     }
 
-    public String getSubmittedBy() {
-        return submittedBy;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public void setSubmittedBy(String submittedBy) {
-        this.submittedBy = submittedBy;
+    public LocalDateTime getSubmittedAt() {
+        return submittedAt;
+    }
+
+    public void setSubmittedAt(LocalDateTime submittedAt) {
+        this.submittedAt = submittedAt;
     }
 
     public IntegrityCase getIntegrityCase() {

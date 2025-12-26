@@ -10,6 +10,7 @@ public class RepeatOffenderRecord {
     private Long id;
 
     private int totalCases;
+
     private String flagSeverity;
 
     @OneToOne
@@ -17,6 +18,10 @@ public class RepeatOffenderRecord {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public int getTotalCases() {

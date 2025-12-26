@@ -1,7 +1,7 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 public class IntegrityCase {
@@ -10,9 +10,13 @@ public class IntegrityCase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String courseCode;
+    private String instructorName;
+
+    private String description;
+
+    private LocalDate incidentDate;
+
     private String status;
-    private LocalDateTime createdAt;
 
     @ManyToOne
     private StudentProfile studentProfile;
@@ -21,28 +25,32 @@ public class IntegrityCase {
         return id;
     }
 
-    public String getCourseCode() {
-        return courseCode;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setCourseCode(String courseCode) {
-        this.courseCode = courseCode;
+    public String getInstructorName() {
+        return instructorName;
     }
 
-    public String getStatus() {
-        return status;
+    public void setInstructorName(String instructorName) {
+        this.instructorName = instructorName;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public String getDescription() {
+        return description;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public LocalDate getIncidentDate() {
+        return incidentDate;
+    }
+
+    public void setIncidentDate(LocalDate incidentDate) {
+        this.incidentDate = incidentDate;
     }
 
     public StudentProfile getStudentProfile() {
@@ -51,5 +59,13 @@ public class IntegrityCase {
 
     public void setStudentProfile(StudentProfile studentProfile) {
         this.studentProfile = studentProfile;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
