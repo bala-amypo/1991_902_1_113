@@ -5,7 +5,6 @@ import com.example.demo.repository.IntegrityCaseRepository;
 import com.example.demo.service.IntegrityCaseService;
 
 import java.util.List;
-import java.util.Optional;
 
 public class IntegrityCaseServiceImpl implements IntegrityCaseService {
 
@@ -25,11 +24,15 @@ public class IntegrityCaseServiceImpl implements IntegrityCaseService {
         return integrityCaseRepository.save(c);
     }
 
+    public IntegrityCase getCaseById(Long caseId) {
+        return integrityCaseRepository.findById(caseId).orElseThrow();
+    }
+
     public List<IntegrityCase> getCasesByStudent(Long studentId) {
         return integrityCaseRepository.findByStudentProfileId(studentId);
     }
 
-    public Optional<IntegrityCase> getCaseById(Long caseId) {
-        return integrityCaseRepository.findById(caseId);
+    public List<IntegrityCase> getAllCases() {
+        return integrityCaseRepository.findAll();
     }
 }
