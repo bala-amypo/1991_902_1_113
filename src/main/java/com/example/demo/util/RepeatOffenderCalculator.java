@@ -5,6 +5,10 @@ import java.util.List;
 
 public class RepeatOffenderCalculator {
 
+    public boolean isRepeatOffender(StudentProfile student, List<IntegrityCase> cases) {
+        return cases.size() >= 2;
+    }
+
     public RepeatOffenderRecord computeRepeatOffenderRecord(StudentProfile student, List<IntegrityCase> cases) {
         RepeatOffenderRecord record = new RepeatOffenderRecord();
         record.setStudentProfile(student);

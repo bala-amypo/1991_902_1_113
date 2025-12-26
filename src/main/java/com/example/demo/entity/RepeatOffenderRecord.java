@@ -15,6 +15,10 @@ public class RepeatOffenderRecord {
     @ManyToOne
     private StudentProfile studentProfile;
 
+    public Long getId() {
+        return id;
+    }
+
     public Integer getTotalCases() {
         return totalCases;
     }
