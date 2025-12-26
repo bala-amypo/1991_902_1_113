@@ -47,17 +47,14 @@ public class StudentProfileServiceImpl implements StudentProfileService {
 
     @Override
     public StudentProfile updateRepeatOffenderStatus(Long studentId) {
-        StudentProfile profile = studentProfileRepository.findById(studentId)
-                .orElseThrow(() -> new ResourceNotFoundException("Student not found"));
+        StudentProfile profile = getStudentById(studentId);
 
-        List<IntegrityCase> integrityCases =
+        List<IntegrityCase> cases =
                 integrityCaseRepository.findByStudentId(studentId);
 
-        boolean repeat =
-                calculator.isRepeatOffender(profile, integrityCases);
+        boolean repeat = calculator.isRepeatOffender(profile, cases);
 
         profile.setRepeatOffender(repeat);
-
         return studentProfileRepository.save(profile);
     }
 }
