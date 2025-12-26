@@ -25,11 +25,25 @@ public class StudentProfileServiceImpl implements StudentProfileService {
 
     @Override
     public StudentProfile saveProfile(StudentProfile profile) {
+        return studentProfileRepository.save(profile);
+    }
+
+    @Override
+    public StudentProfile updateRepeatOffenderStatus(Long studentProfileId) {
+        StudentProfile profile =
+                studentProfileRepository.findById(studentProfileId).orElse(null);
+
+        if (profile == null) {
+            return null;
+        }
+
         List<IntegrityCase> cases =
-                integrityCaseRepository.findByStudentProfileId(profile.getId());
+                integrityCaseRepository.findByStudentProfileId(studentProfileId);
+
         profile.setRepeatOffender(
                 calculator.isRepeatOffender(profile, cases)
         );
+
         return studentProfileRepository.save(profile);
     }
 }

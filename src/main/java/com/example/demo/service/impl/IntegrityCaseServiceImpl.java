@@ -1,11 +1,10 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.entity.IntegrityCase;
-import com.example.demo.repository.IntegrityCaseRepository;
-import com.example.demo.service.IntegrityCaseService;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+import com.example.demo.entity.*;
+import com.example.demo.repository.*;
+import com.example.demo.service.IntegrityCaseService;
 
 @Service
 public class IntegrityCaseServiceImpl implements IntegrityCaseService {
@@ -22,13 +21,8 @@ public class IntegrityCaseServiceImpl implements IntegrityCaseService {
     }
 
     @Override
-    public IntegrityCase updateCaseStatus(Long caseId, String newStatus) {
-        IntegrityCase integrityCase = repository.findById(caseId).orElse(null);
-        if (integrityCase != null) {
-            integrityCase.setStatus(newStatus);
-            return repository.save(integrityCase);
-        }
-        return null;
+    public IntegrityCase getCaseById(Long id) {
+        return repository.findById(id).orElse(null);
     }
 
     @Override
@@ -37,12 +31,17 @@ public class IntegrityCaseServiceImpl implements IntegrityCaseService {
     }
 
     @Override
-    public IntegrityCase getCaseById(Long id) {
-        return repository.findById(id).orElse(null);
+    public List<IntegrityCase> getCasesByStudent(Long studentProfileId) {
+        return repository.findByStudentProfileId(studentProfileId);
     }
 
     @Override
-    public List<IntegrityCase> getCasesByStudent(Long studentId) {
-        return repository.findByStudentId(studentId);
+    public IntegrityCase updateCaseStatus(Long id, String status) {
+        IntegrityCase c = repository.findById(id).orElse(null);
+        if (c != null) {
+            c.setStatus(status);
+            repository.save(c);
+        }
+        return c;
     }
 }
