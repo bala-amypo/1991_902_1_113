@@ -4,5 +4,6 @@ import com.example.demo.entity.RepeatOffenderRecord;
 import com.example.demo.entity.StudentProfile;
 
 public interface RepeatOffenderRecordService {
+
     RepeatOffenderRecord updateRepeatOffenderRecord(StudentProfile studentProfile);
 }
