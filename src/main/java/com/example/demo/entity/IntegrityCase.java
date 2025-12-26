@@ -1,7 +1,7 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class IntegrityCase {
@@ -10,46 +10,23 @@ public class IntegrityCase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String studentIdentifier;
-
-    private String instructorName;
-
-    private String description;
-
+    private String courseCode;
     private String status;
+    private LocalDateTime createdAt;
 
-    private LocalDate incidentDate;
+    @ManyToOne
+    private StudentProfile studentProfile;
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getCourseCode() {
+        return courseCode;
     }
 
-    public String getStudentIdentifier() {
-        return studentIdentifier;
-    }
-
-    public void setStudentIdentifier(String studentIdentifier) {
-        this.studentIdentifier = studentIdentifier;
-    }
-
-    public String getInstructorName() {
-        return instructorName;
-    }
-
-    public void setInstructorName(String instructorName) {
-        this.instructorName = instructorName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
     }
 
     public String getStatus() {
@@ -60,11 +37,19 @@ public class IntegrityCase {
         this.status = status;
     }
 
-    public LocalDate getIncidentDate() {
-        return incidentDate;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setIncidentDate(LocalDate incidentDate) {
-        this.incidentDate = incidentDate;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public StudentProfile getStudentProfile() {
+        return studentProfile;
+    }
+
+    public void setStudentProfile(StudentProfile studentProfile) {
+        this.studentProfile = studentProfile;
     }
 }
