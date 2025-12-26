@@ -1,7 +1,7 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class RepeatOffenderRecord {
@@ -10,20 +10,41 @@ public class RepeatOffenderRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    private boolean repeatOffender;
+    private LocalDateTime evaluatedAt;
+
+    @OneToOne
     private StudentProfile studentProfile;
 
-    private Integer totalCases;
-    private LocalDate lastIncidentDate;
-    private String flagSeverity;
+    public Long getId() {
+        return id;
+    }
 
-    public Long getId() { return id; }
-    public StudentProfile getStudentProfile() { return studentProfile; }
-    public void setStudentProfile(StudentProfile studentProfile) { this.studentProfile = studentProfile; }
-    public Integer getTotalCases() { return totalCases; }
-    public void setTotalCases(Integer totalCases) { this.totalCases = totalCases; }
-    public LocalDate getLastIncidentDate() { return lastIncidentDate; }
-    public void setLastIncidentDate(LocalDate lastIncidentDate) { this.lastIncidentDate = lastIncidentDate; }
-    public String getFlagSeverity() { return flagSeverity; }
-    public void setFlagSeverity(String flagSeverity) { this.flagSeverity = flagSeverity; }
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public boolean isRepeatOffender() {
+        return repeatOffender;
+    }
+
+    public void setRepeatOffender(boolean repeatOffender) {
+        this.repeatOffender = repeatOffender;
+    }
+
+    public LocalDateTime getEvaluatedAt() {
+        return evaluatedAt;
+    }
+
+    public void setEvaluatedAt(LocalDateTime evaluatedAt) {
+        this.evaluatedAt = evaluatedAt;
+    }
+
+    public StudentProfile getStudentProfile() {
+        return studentProfile;
+    }
+
+    public void setStudentProfile(StudentProfile studentProfile) {
+        this.studentProfile = studentProfile;
+    }
 }

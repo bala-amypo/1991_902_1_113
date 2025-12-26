@@ -5,52 +5,46 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "integrity_cases")
 public class IntegrityCase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String caseType;
-
-    private String description;
-
+    private String courseCode;
+    private String instructorName;
     private String status;
-
     private LocalDateTime incidentDate;
+    private LocalDateTime createdAt;
 
     @ManyToOne
-    @JoinColumn(name = "student_profile_id")
     private StudentProfile studentProfile;
 
     @OneToMany(mappedBy = "integrityCase", cascade = CascadeType.ALL)
-    private List<EvidenceRecord> evidenceRecords;
-
-    @OneToMany(mappedBy = "integrityCase", cascade = CascadeType.ALL)
-    private List<PenaltyAction> penaltyActions;
-
-    public IntegrityCase() {
-    }
+    private List<PenaltyAction> penalties;
 
     public Long getId() {
         return id;
     }
 
-    public String getCaseType() {
-        return caseType;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setCaseType(String caseType) {
-        this.caseType = caseType;
+    public String getCourseCode() {
+        return courseCode;
     }
 
-    public String getDescription() {
-        return description;
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public String getInstructorName() {
+        return instructorName;
+    }
+
+    public void setInstructorName(String instructorName) {
+        this.instructorName = instructorName;
     }
 
     public String getStatus() {
@@ -69,6 +63,14 @@ public class IntegrityCase {
         this.incidentDate = incidentDate;
     }
 
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
     public StudentProfile getStudentProfile() {
         return studentProfile;
     }
@@ -77,19 +79,11 @@ public class IntegrityCase {
         this.studentProfile = studentProfile;
     }
 
-    public List<EvidenceRecord> getEvidenceRecords() {
-        return evidenceRecords;
+    public List<PenaltyAction> getPenalties() {
+        return penalties;
     }
 
-    public void setEvidenceRecords(List<EvidenceRecord> evidenceRecords) {
-        this.evidenceRecords = evidenceRecords;
-    }
-
-    public List<PenaltyAction> getPenaltyActions() {
-        return penaltyActions;
-    }
-
-    public void setPenaltyActions(List<PenaltyAction> penaltyActions) {
-        this.penaltyActions = penaltyActions;
+    public void setPenalties(List<PenaltyAction> penalties) {
+        this.penalties = penalties;
     }
 }
