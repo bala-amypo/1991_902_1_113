@@ -17,6 +17,11 @@ public class EvidenceRecordServiceImpl implements EvidenceRecordService {
     }
 
     @Override
+    public EvidenceRecord submitEvidence(EvidenceRecord evidenceRecord) {
+        return repository.save(evidenceRecord);
+    }
+
+    @Override
     public List<EvidenceRecord> getAllEvidence() {
         return repository.findAll();
     }

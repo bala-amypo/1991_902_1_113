@@ -17,6 +17,21 @@ public class IntegrityCaseServiceImpl implements IntegrityCaseService {
     }
 
     @Override
+    public IntegrityCase createCase(IntegrityCase integrityCase) {
+        return repository.save(integrityCase);
+    }
+
+    @Override
+    public IntegrityCase updateCaseStatus(Long caseId, String newStatus) {
+        IntegrityCase integrityCase = repository.findById(caseId).orElse(null);
+        if (integrityCase != null) {
+            integrityCase.setStatus(newStatus);
+            return repository.save(integrityCase);
+        }
+        return null;
+    }
+
+    @Override
     public List<IntegrityCase> getAllCases() {
         return repository.findAll();
     }
