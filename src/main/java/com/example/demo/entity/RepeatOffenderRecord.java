@@ -13,6 +13,8 @@ public class RepeatOffenderRecord {
     private StudentProfile studentProfile;
 
     private int offenseCount;
+    private int totalCases;
+    private String flagSeverity;
 
     public RepeatOffenderRecord() {}
 
@@ -24,4 +26,10 @@ public class RepeatOffenderRecord {
 
     public int getOffenseCount() { return offenseCount; }
     public void setOffenseCount(int offenseCount) { this.offenseCount = offenseCount; }
+
+    public int getTotalCases() { return totalCases; }
+    public void setTotalCases(int totalCases) { this.totalCases = totalCases; }
+
+    public String getFlagSeverity() { return flagSeverity; }
+    public void setFlagSeverity(String flagSeverity) { this.flagSeverity = flagSeverity; }
 }
