@@ -3,11 +3,13 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Data
+import java.util.Set;
+
+@Entity
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "app_users")
 public class AppUser {
 
     @Id
@@ -15,8 +17,10 @@ public class AppUser {
     private Long id;
 
     private String email;
-
     private String password;
 
-    private String role;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "role")
+    private Set<String> roles;
 }
