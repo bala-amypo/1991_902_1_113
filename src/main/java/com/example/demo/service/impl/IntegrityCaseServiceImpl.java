@@ -1,7 +1,6 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.entity.IntegrityCase;
-import com.example.demo.entity.StudentProfile;
 import com.example.demo.repository.IntegrityCaseRepository;
 import com.example.demo.service.IntegrityCaseService;
 import lombok.RequiredArgsConstructor;
@@ -21,8 +20,8 @@ public class IntegrityCaseServiceImpl implements IntegrityCaseService {
     }
 
     @Override
-    public List<IntegrityCase> getCasesByStudentProfile(StudentProfile profile) {
-        return repository.findByStudentProfileId(profile.getId());
+    public List<IntegrityCase> getCasesByStudent(Long studentProfileId) {
+        return repository.findByStudentProfileId(studentProfileId);
     }
 
     @Override
