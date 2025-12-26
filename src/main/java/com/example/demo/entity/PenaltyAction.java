@@ -5,21 +5,24 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Entity
 public class PenaltyAction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String penaltyType;
-    private String details;
-    private LocalDateTime issuedAt;
-
     @ManyToOne
     private IntegrityCase integrityCase;
+
+    private String penaltyType;
+
+    private String details;
+
+    private String issuedBy;
+
+    private LocalDateTime issuedAt;
 }

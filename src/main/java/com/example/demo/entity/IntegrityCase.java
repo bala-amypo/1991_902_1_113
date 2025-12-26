@@ -4,25 +4,33 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Entity
 public class IntegrityCase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    private StudentProfile studentProfile;
+
     private String courseCode;
+
     private String instructorName;
+
     private String description;
+
     private String status;
 
     private LocalDateTime incidentDate;
 
-    @ManyToOne
-    private StudentProfile studentProfile;
+    private LocalDateTime createdAt;
+
+    @OneToMany(mappedBy = "integrityCase", cascade = CascadeType.ALL)
+    private List<PenaltyAction> penalties;
 }

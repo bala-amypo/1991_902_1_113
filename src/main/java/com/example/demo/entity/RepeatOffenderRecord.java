@@ -1,7 +1,13 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
+import java.time.LocalDateTime;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class RepeatOffenderRecord {
 
@@ -9,41 +15,10 @@ public class RepeatOffenderRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer totalCases;
-    private String flagSeverity;
-
-    @ManyToOne
+    @OneToOne
     private StudentProfile studentProfile;
 
-    public Long getId() {
-        return id;
-    }
+    private int totalCases;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Integer getTotalCases() {
-        return totalCases;
-    }
-
-    public void setTotalCases(Integer totalCases) {
-        this.totalCases = totalCases;
-    }
-
-    public String getFlagSeverity() {
-        return flagSeverity;
-    }
-
-    public void setFlagSeverity(String flagSeverity) {
-        this.flagSeverity = flagSeverity;
-    }
-
-    public StudentProfile getStudentProfile() {
-        return studentProfile;
-    }
-
-    public void setStudentProfile(StudentProfile studentProfile) {
-        this.studentProfile = studentProfile;
-    }
+    private LocalDateTime flaggedAt;
 }

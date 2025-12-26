@@ -5,22 +5,24 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Entity
 public class EvidenceRecord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String evidenceType;
-    private String content;
-
-    private LocalDateTime submittedAt;
-
     @ManyToOne
     private IntegrityCase integrityCase;
+
+    private String evidenceType;
+
+    private String content;
+
+    private String submittedBy;
+
+    private LocalDateTime submittedAt;
 }
