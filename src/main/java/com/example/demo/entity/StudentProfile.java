@@ -3,12 +3,11 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
-
-@Data
+@Entity
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 public class StudentProfile {
 
     @Id
@@ -16,14 +15,9 @@ public class StudentProfile {
     private Long id;
 
     private String studentId;
-
     private String name;
-
-    private String email;
-
     private String program;
-
     private int yearLevel;
 
-    private LocalDateTime createdAt;
+    private boolean repeatOffender;
 }
