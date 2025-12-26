@@ -1,7 +1,6 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 public class RepeatOffenderRecord {
@@ -10,8 +9,8 @@ public class RepeatOffenderRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private boolean repeatOffender;
-    private LocalDateTime evaluatedAt;
+    private int totalCases;
+    private String flagSeverity;
 
     @OneToOne
     private StudentProfile studentProfile;
@@ -20,24 +19,20 @@ public class RepeatOffenderRecord {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public int getTotalCases() {
+        return totalCases;
     }
 
-    public boolean isRepeatOffender() {
-        return repeatOffender;
+    public void setTotalCases(int totalCases) {
+        this.totalCases = totalCases;
     }
 
-    public void setRepeatOffender(boolean repeatOffender) {
-        this.repeatOffender = repeatOffender;
+    public String getFlagSeverity() {
+        return flagSeverity;
     }
 
-    public LocalDateTime getEvaluatedAt() {
-        return evaluatedAt;
-    }
-
-    public void setEvaluatedAt(LocalDateTime evaluatedAt) {
-        this.evaluatedAt = evaluatedAt;
+    public void setFlagSeverity(String flagSeverity) {
+        this.flagSeverity = flagSeverity;
     }
 
     public StudentProfile getStudentProfile() {

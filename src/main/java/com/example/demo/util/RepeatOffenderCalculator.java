@@ -1,21 +1,15 @@
 package com.example.demo.util;
 
-import com.example.demo.entity.IntegrityCase;
-import com.example.demo.entity.StudentProfile;
-
-import java.time.LocalDate;
 import java.util.List;
+import com.example.demo.entity.*;
 
 public class RepeatOffenderCalculator {
 
-    public boolean isRepeatOffender(StudentProfile profile, List<IntegrityCase> cases) {
-        LocalDate now = LocalDate.now();
-
-        long recentCount = cases.stream()
-                .filter(c -> c.getIncidentDate() != null)
-                .filter(c -> c.getIncidentDate().isAfter(now.minusMonths(6)))
-                .count();
-
-        return recentCount >= 2;
+    public RepeatOffenderRecord computeRepeatOffenderRecord(StudentProfile profile, List<IntegrityCase> cases) {
+        RepeatOffenderRecord record = new RepeatOffenderRecord();
+        record.setStudentProfile(profile);
+        record.setTotalCases(cases.size());
+        record.setFlagSeverity(cases.size() >= 3 ? "HIGH" : "LOW");
+        return record;
     }
 }
