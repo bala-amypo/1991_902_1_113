@@ -2,9 +2,8 @@ package com.example.demo.security;
 
 import com.example.demo.entity.AppUser;
 import com.example.demo.repository.AppUserRepository;
-import org.springframework.security.core.userdetails.*;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
+import org.springframework.security.core.userdetails.*;
 import java.util.stream.Collectors;
 
 public class CustomUserDetailsService implements UserDetailsService {
