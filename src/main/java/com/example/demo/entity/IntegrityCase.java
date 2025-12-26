@@ -1,8 +1,7 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
-import java.util.List;
+import java.time.LocalDate;
 
 @Entity
 public class IntegrityCase {
@@ -11,17 +10,15 @@ public class IntegrityCase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String courseCode;
+    private String studentIdentifier;
+
     private String instructorName;
+
+    private String description;
+
     private String status;
-    private LocalDateTime incidentDate;
-    private LocalDateTime createdAt;
 
-    @ManyToOne
-    private StudentProfile studentProfile;
-
-    @OneToMany(mappedBy = "integrityCase", cascade = CascadeType.ALL)
-    private List<PenaltyAction> penalties;
+    private LocalDate incidentDate;
 
     public Long getId() {
         return id;
@@ -31,12 +28,12 @@ public class IntegrityCase {
         this.id = id;
     }
 
-    public String getCourseCode() {
-        return courseCode;
+    public String getStudentIdentifier() {
+        return studentIdentifier;
     }
 
-    public void setCourseCode(String courseCode) {
-        this.courseCode = courseCode;
+    public void setStudentIdentifier(String studentIdentifier) {
+        this.studentIdentifier = studentIdentifier;
     }
 
     public String getInstructorName() {
@@ -47,6 +44,14 @@ public class IntegrityCase {
         this.instructorName = instructorName;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -55,35 +60,11 @@ public class IntegrityCase {
         this.status = status;
     }
 
-    public LocalDateTime getIncidentDate() {
+    public LocalDate getIncidentDate() {
         return incidentDate;
     }
 
-    public void setIncidentDate(LocalDateTime incidentDate) {
+    public void setIncidentDate(LocalDate incidentDate) {
         this.incidentDate = incidentDate;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public StudentProfile getStudentProfile() {
-        return studentProfile;
-    }
-
-    public void setStudentProfile(StudentProfile studentProfile) {
-        this.studentProfile = studentProfile;
-    }
-
-    public List<PenaltyAction> getPenalties() {
-        return penalties;
-    }
-
-    public void setPenalties(List<PenaltyAction> penalties) {
-        this.penalties = penalties;
     }
 }

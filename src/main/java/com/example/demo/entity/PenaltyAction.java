@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class PenaltyAction {
@@ -10,11 +11,8 @@ public class PenaltyAction {
     private Long id;
 
     private String penaltyType;
-    private String details;
-    private String issuedBy;
 
-    @ManyToOne
-    private IntegrityCase integrityCase;
+    private LocalDateTime issuedAt;
 
     public Long getId() {
         return id;
@@ -32,27 +30,11 @@ public class PenaltyAction {
         this.penaltyType = penaltyType;
     }
 
-    public String getDetails() {
-        return details;
+    public LocalDateTime getIssuedAt() {
+        return issuedAt;
     }
 
-    public void setDetails(String details) {
-        this.details = details;
-    }
-
-    public String getIssuedBy() {
-        return issuedBy;
-    }
-
-    public void setIssuedBy(String issuedBy) {
-        this.issuedBy = issuedBy;
-    }
-
-    public IntegrityCase getIntegrityCase() {
-        return integrityCase;
-    }
-
-    public void setIntegrityCase(IntegrityCase integrityCase) {
-        this.integrityCase = integrityCase;
+    public void setIssuedAt(LocalDateTime issuedAt) {
+        this.issuedAt = issuedAt;
     }
 }
