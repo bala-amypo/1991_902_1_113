@@ -11,41 +11,26 @@ public class PenaltyAction {
     private Long id;
 
     private String penaltyType;
-
+    private String details;
     private LocalDateTime issuedAt;
 
     @ManyToOne
     private IntegrityCase integrityCase;
 
-    public Long getId() {
-        return id;
-    }
+    public PenaltyAction() {}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public String getPenaltyType() {
-        return penaltyType;
-    }
+    public String getPenaltyType() { return penaltyType; }
+    public void setPenaltyType(String penaltyType) { this.penaltyType = penaltyType; }
 
-    public void setPenaltyType(String penaltyType) {
-        this.penaltyType = penaltyType;
-    }
+    public String getDetails() { return details; }
+    public void setDetails(String details) { this.details = details; }
 
-    public LocalDateTime getIssuedAt() {
-        return issuedAt;
-    }
+    public LocalDateTime getIssuedAt() { return issuedAt; }
+    public void setIssuedAt(LocalDateTime issuedAt) { this.issuedAt = issuedAt; }
 
-    public void setIssuedAt(LocalDateTime issuedAt) {
-        this.issuedAt = issuedAt;
-    }
-
-    public IntegrityCase getIntegrityCase() {
-        return integrityCase;
-    }
-
-    public void setIntegrityCase(IntegrityCase integrityCase) {
-        this.integrityCase = integrityCase;
-    }
+    public IntegrityCase getIntegrityCase() { return integrityCase; }
+    public void setIntegrityCase(IntegrityCase integrityCase) { this.integrityCase = integrityCase; }
 }

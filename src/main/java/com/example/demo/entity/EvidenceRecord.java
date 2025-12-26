@@ -11,41 +11,26 @@ public class EvidenceRecord {
     private Long id;
 
     private String content;
-
+    private String evidenceType;
     private LocalDateTime submittedAt;
 
     @ManyToOne
     private IntegrityCase integrityCase;
 
-    public Long getId() {
-        return id;
-    }
+    public EvidenceRecord() {}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public String getContent() {
-        return content;
-    }
+    public String getContent() { return content; }
+    public void setContent(String content) { this.content = content; }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+    public String getEvidenceType() { return evidenceType; }
+    public void setEvidenceType(String evidenceType) { this.evidenceType = evidenceType; }
 
-    public LocalDateTime getSubmittedAt() {
-        return submittedAt;
-    }
+    public LocalDateTime getSubmittedAt() { return submittedAt; }
+    public void setSubmittedAt(LocalDateTime submittedAt) { this.submittedAt = submittedAt; }
 
-    public void setSubmittedAt(LocalDateTime submittedAt) {
-        this.submittedAt = submittedAt;
-    }
-
-    public IntegrityCase getIntegrityCase() {
-        return integrityCase;
-    }
-
-    public void setIntegrityCase(IntegrityCase integrityCase) {
-        this.integrityCase = integrityCase;
-    }
+    public IntegrityCase getIntegrityCase() { return integrityCase; }
+    public void setIntegrityCase(IntegrityCase integrityCase) { this.integrityCase = integrityCase; }
 }

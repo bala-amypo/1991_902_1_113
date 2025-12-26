@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class IntegrityCase {
@@ -10,62 +11,48 @@ public class IntegrityCase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String studentIdentifier;
     private String instructorName;
-
     private String description;
-
-    private LocalDate incidentDate;
-
     private String status;
+    private LocalDate incidentDate;
+    private String courseCode;
 
     @ManyToOne
     private StudentProfile studentProfile;
 
-    public Long getId() {
-        return id;
-    }
+    @OneToMany(mappedBy = "integrityCase")
+    private List<EvidenceRecord> evidenceRecords;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @OneToMany(mappedBy = "integrityCase")
+    private List<PenaltyAction> penaltyActions;
 
-    public String getInstructorName() {
-        return instructorName;
-    }
+    public IntegrityCase() {}
 
-    public void setInstructorName(String instructorName) {
-        this.instructorName = instructorName;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public String getDescription() {
-        return description;
-    }
+    public String getStudentIdentifier() { return studentIdentifier; }
+    public void setStudentIdentifier(String studentIdentifier) { this.studentIdentifier = studentIdentifier; }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public String getInstructorName() { return instructorName; }
+    public void setInstructorName(String instructorName) { this.instructorName = instructorName; }
 
-    public LocalDate getIncidentDate() {
-        return incidentDate;
-    }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 
-    public void setIncidentDate(LocalDate incidentDate) {
-        this.incidentDate = incidentDate;
-    }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 
-    public StudentProfile getStudentProfile() {
-        return studentProfile;
-    }
+    public LocalDate getIncidentDate() { return incidentDate; }
+    public void setIncidentDate(LocalDate incidentDate) { this.incidentDate = incidentDate; }
 
-    public void setStudentProfile(StudentProfile studentProfile) {
-        this.studentProfile = studentProfile;
-    }
+    public String getCourseCode() { return courseCode; }
+    public void setCourseCode(String courseCode) { this.courseCode = courseCode; }
 
-    public String getStatus() {
-        return status;
-    }
+    public StudentProfile getStudentProfile() { return studentProfile; }
+    public void setStudentProfile(StudentProfile studentProfile) { this.studentProfile = studentProfile; }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+    public List<EvidenceRecord> getEvidenceRecords() { return evidenceRecords; }
+    public List<PenaltyAction> getPenaltyActions() { return penaltyActions; }
 }

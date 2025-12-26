@@ -6,14 +6,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface IntegrityCaseRepository extends JpaRepository<IntegrityCase, Long> {
-
-    List<IntegrityCase> findByStudentProfileId(Long studentId);
-
+    List<IntegrityCase> findByStudentIdentifier(String studentIdentifier);
     List<IntegrityCase> findByStatus(String status);
-
-    List<IntegrityCase> findByStatusAndIncidentDate(String status, LocalDate incidentDate);
-
+    List<IntegrityCase> findByIncidentDate(LocalDate date);
     List<IntegrityCase> findByIncidentDateBetween(LocalDate start, LocalDate end);
-
-    List<IntegrityCase> findByStudentProfileStudentIdentifier(String studentIdentifier);
 }

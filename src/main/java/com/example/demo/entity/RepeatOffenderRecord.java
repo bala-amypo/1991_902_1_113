@@ -9,42 +9,19 @@ public class RepeatOffenderRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int totalCases;
-
-    private String flagSeverity;
-
     @OneToOne
     private StudentProfile studentProfile;
 
-    public Long getId() {
-        return id;
-    }
+    private int offenseCount;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public RepeatOffenderRecord() {}
 
-    public int getTotalCases() {
-        return totalCases;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public void setTotalCases(int totalCases) {
-        this.totalCases = totalCases;
-    }
+    public StudentProfile getStudentProfile() { return studentProfile; }
+    public void setStudentProfile(StudentProfile studentProfile) { this.studentProfile = studentProfile; }
 
-    public String getFlagSeverity() {
-        return flagSeverity;
-    }
-
-    public void setFlagSeverity(String flagSeverity) {
-        this.flagSeverity = flagSeverity;
-    }
-
-    public StudentProfile getStudentProfile() {
-        return studentProfile;
-    }
-
-    public void setStudentProfile(StudentProfile studentProfile) {
-        this.studentProfile = studentProfile;
-    }
+    public int getOffenseCount() { return offenseCount; }
+    public void setOffenseCount(int offenseCount) { this.offenseCount = offenseCount; }
 }
