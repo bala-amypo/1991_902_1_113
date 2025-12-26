@@ -10,10 +10,12 @@ public class StudentProfile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String studentId;
     private String name;
     private String email;
     private String program;
     private int yearLevel;
+    private boolean repeatOffender;
 
     @OneToMany(mappedBy = "studentProfile", cascade = CascadeType.ALL)
     private List<IntegrityCase> integrityCases;
@@ -24,6 +26,14 @@ public class StudentProfile {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
     }
 
     public String getName() {
@@ -56,6 +66,14 @@ public class StudentProfile {
 
     public void setYearLevel(int yearLevel) {
         this.yearLevel = yearLevel;
+    }
+
+    public boolean isRepeatOffender() {
+        return repeatOffender;
+    }
+
+    public void setRepeatOffender(boolean repeatOffender) {
+        this.repeatOffender = repeatOffender;
     }
 
     public List<IntegrityCase> getIntegrityCases() {
