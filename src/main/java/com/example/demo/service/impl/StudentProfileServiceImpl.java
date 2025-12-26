@@ -1,15 +1,11 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.entity.IntegrityCase;
-import com.example.demo.entity.StudentProfile;
-import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.repository.IntegrityCaseRepository;
-import com.example.demo.repository.StudentProfileRepository;
+import org.springframework.stereotype.Service;
+import java.util.List;
+import com.example.demo.entity.*;
+import com.example.demo.repository.*;
 import com.example.demo.service.StudentProfileService;
 import com.example.demo.util.RepeatOffenderCalculator;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class StudentProfileServiceImpl implements StudentProfileService {
@@ -21,40 +17,19 @@ public class StudentProfileServiceImpl implements StudentProfileService {
     public StudentProfileServiceImpl(
             StudentProfileRepository studentProfileRepository,
             IntegrityCaseRepository integrityCaseRepository,
-            RepeatOffenderCalculator calculator
-    ) {
+            RepeatOffenderCalculator calculator) {
         this.studentProfileRepository = studentProfileRepository;
         this.integrityCaseRepository = integrityCaseRepository;
         this.calculator = calculator;
     }
 
     @Override
-    public StudentProfile createStudent(StudentProfile profile) {
-        profile.setRepeatOffender(false);
-        return studentProfileRepository.save(profile);
-    }
-
-    @Override
-    public StudentProfile getStudentById(Long id) {
-        return studentProfileRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Student not found"));
-    }
-
-    @Override
-    public List<StudentProfile> getAllStudents() {
-        return studentProfileRepository.findAll();
-    }
-
-    @Override
-    public StudentProfile updateRepeatOffenderStatus(Long studentId) {
-        StudentProfile profile = getStudentById(studentId);
-
+    public StudentProfile saveProfile(StudentProfile profile) {
         List<IntegrityCase> cases =
-                integrityCaseRepository.findByStudentId(studentId);
-
-        boolean repeat = calculator.isRepeatOffender(profile, cases);
-
-        profile.setRepeatOffender(repeat);
+                integrityCaseRepository.findByStudentProfileId(profile.getId());
+        profile.setRepeatOffender(
+                calculator.isRepeatOffender(profile, cases)
+        );
         return studentProfileRepository.save(profile);
     }
 }

@@ -4,5 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.demo.entity.*;
 
 public interface RepeatOffenderRecordRepository extends JpaRepository<RepeatOffenderRecord, Long> {
-    RepeatOffenderRecord findByStudentProfile(StudentProfile profile);
+
+    RepeatOffenderRecord findByStudentProfile(StudentProfile studentProfile);
+
+    RepeatOffenderRecord findByStudentProfileId(Long studentProfileId);
 }
