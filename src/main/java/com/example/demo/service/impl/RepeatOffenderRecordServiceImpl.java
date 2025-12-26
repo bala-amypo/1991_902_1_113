@@ -1,59 +1,52 @@
 package com.example.demo.service.impl;
 
-import org.springframework.stereotype.Service;
-import java.util.List;
 import com.example.demo.entity.*;
 import com.example.demo.repository.*;
 import com.example.demo.service.RepeatOffenderRecordService;
 import com.example.demo.util.RepeatOffenderCalculator;
+import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class RepeatOffenderRecordServiceImpl implements RepeatOffenderRecordService {
 
-    private final RepeatOffenderRecordRepository repository;
     private final StudentProfileRepository studentProfileRepository;
     private final IntegrityCaseRepository integrityCaseRepository;
+    private final RepeatOffenderRecordRepository repository;
     private final RepeatOffenderCalculator calculator;
 
     public RepeatOffenderRecordServiceImpl(
-            RepeatOffenderRecordRepository repository,
             StudentProfileRepository studentProfileRepository,
             IntegrityCaseRepository integrityCaseRepository,
+            RepeatOffenderRecordRepository repository,
             RepeatOffenderCalculator calculator) {
-        this.repository = repository;
         this.studentProfileRepository = studentProfileRepository;
         this.integrityCaseRepository = integrityCaseRepository;
+        this.repository = repository;
         this.calculator = calculator;
     }
 
     @Override
-    public RepeatOffenderRecord refreshRepeatOffenderData(Long studentProfileId) {
-        StudentProfile profile =
-                studentProfileRepository.findById(studentProfileId).orElse(null);
-
-        if (profile == null) {
-            return null;
-        }
-
-        List<IntegrityCase> cases =
-                integrityCaseRepository.findByStudentProfileId(studentProfileId);
+    public RepeatOffenderRecord refreshRepeatOffenderData(Long studentId) {
+        StudentProfile profile = studentProfileRepository.findById(studentId).orElseThrow();
+        List<IntegrityCase> cases = integrityCaseRepository.findByStudentProfileId(studentId);
 
         RepeatOffenderRecord record =
-                repository.findByStudentProfile(profile);
+                repository.findByStudentProfile(profile).orElse(null);
 
-        if (record == null) {
-            record = calculator.computeRepeatOffenderRecord(profile, cases);
-        } else {
-            record.setTotalCases(cases.size());
-            record.setFlagSeverity(cases.size() >= 3 ? "HIGH" : "LOW");
+        RepeatOffenderRecord updated =
+                calculator.computeRepeatOffenderRecord(profile, cases);
+
+        if (record != null) {
+            updated.setId(record.getId());
         }
 
-        return repository.save(record);
+        return repository.save(updated);
     }
 
     @Override
-    public RepeatOffenderRecord getRecordByStudent(Long studentProfileId) {
-        return repository.findByStudentProfileId(studentProfileId);
+    public RepeatOffenderRecord getRecordByStudent(Long studentId) {
+        return repository.findByStudentProfileId(studentId).orElse(null);
     }
 
     @Override
