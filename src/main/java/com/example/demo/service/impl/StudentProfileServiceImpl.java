@@ -24,8 +24,18 @@ public class StudentProfileServiceImpl implements StudentProfileService {
     }
 
     @Override
-    public StudentProfile saveProfile(StudentProfile profile) {
+    public StudentProfile createStudent(StudentProfile profile) {
         return studentProfileRepository.save(profile);
+    }
+
+    @Override
+    public StudentProfile getStudentById(Long id) {
+        return studentProfileRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<StudentProfile> getAllStudents() {
+        return studentProfileRepository.findAll();
     }
 
     @Override
