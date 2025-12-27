@@ -40,14 +40,14 @@ public class RepeatOffenderRecordServiceImpl implements RepeatOffenderRecordServ
         List<IntegrityCase> cases =
                 integrityCaseRepository.findByStudentProfile(studentProfile);
 
-        // 2. Compute repeat offender record
+        
         RepeatOffenderRecord record =
                 calculator.computeRepeatOffenderRecord(studentProfile, cases);
 
-        // 3. Save repeat offender record
+        
         repeatOffenderRecordRepository.save(record);
 
-        // 4. Update student repeat offender flag
+        
         studentProfile.setRepeatOffender(record.getTotalCases() >= 2);
         studentProfileRepository.save(studentProfile);
 
